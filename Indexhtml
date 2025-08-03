@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZWAIS Split View Demo</title>
+
+<style>
+@font-face {
+font-family: 'TS Crude';
+src: url("/fonts/TS_crude/TS Crude.ttf") format('truetype');
+font-weight: normal;
+font-style: normal;
+font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html {
+height: 100%;
+font-family: 'Inter', sans-serif;
+overflow: hidden;
+user-select: none;
+}
+
+.container {
+position: relative;
+height: 100%;
+width: 100%;
+}
+
+.left, .right {
+position: absolute;
+top: 0; bottom: 0;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 2rem;
+text-align: center;
+}
+
+.left {
+background: #F7F8FA;
+color: #111;
+left: 0;
+width: 50%;
+}
+
+.right {
+background: linear-gradient(135deg, #1E3A8A, #9333EA, #F59E0B);
+left: 50%;
+width: 50%;
+color: white;
+}
+
+.divider {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 50%;
+width: 4px;
+background: rgba(255,255,255,0.6);
+cursor: ew-resize;
+z-index: 10;
+transition: background 0.3s ease;
+}
+.divider:hover { background: rgba(255,255,255,0.9); }
+
+.logo {
+position: absolute;
+top: 20px;
+left: 80px;
+font-family: 'TS Crude', sans-serif;
+font-size: 4rem;
+font-weight: normal;
+background: linear-gradient(to right, #000 0%, #F59E0B 0%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+pointer-events: none;
+z-index: 20;
+}
+
+/* Navigation */
+nav {
+position: absolute;
+top: 28px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+gap: 2.5rem;
+font-weight: 600;
+font-size: 1rem;
+z-index: 25;
+}
+nav a {
+text-decoration: none;
+background: linear-gradient(to right, black 0%, white 0%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+transition: background 0.1s ease;
+}
+
+/* Apple-style toggle */
+.toggle {
+position: absolute;
+top: 20px;
+right: 40px;
+width: 50px;
+height: 28px;
+border-radius: 50px;
+background: #ccc;
+display: flex;
+align-items: center;
+padding: 3px;
+cursor: pointer;
+transition: background 0.3s ease;
+z-index: 30;
+}
+.toggle .knob {
+height: 22px;
+width: 22px;
+background: white;
+border-radius: 50%;
+transition: transform 0.3s ease;
+}
+.toggle.colorful {
+background: linear-gradient(90deg, #1E3A8A, #9333EA, #F59E0B);
+}
+.toggle.colorful .knob {
+transform: translateX(22px);
+}
+
+/* Buttons - Original style */
+.cta-btn {
+padding: 0.9rem 2rem;
+border-radius: 8px;
+font-size: 1rem;
+font-weight: 600;
+cursor: pointer;
+border: none;
+transition: all 0.3s ease;
+}
+.plain-btn {
+background: white;
+color: #111;
+}
+.plain-btn:hover {
+background: #ddd;
+}
+.creative-btn {
+background: #111;
+color: white;
+}
+.creative-btn:hover {
+background: #333;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="logo">ZWAIS</div>
+
+<!-- Navigation -->
+<nav>
+<a href="#">Services</a>
+<a href="#">Experiments</a>
+<a href="#">Contact</a>
+<a href="#">About</a>
+</nav>
+
+<div class="toggle"><div class="knob"></div></div>
+
+<div class="left">
+<div class="hero-left">
+<h1>Custom AI. Built for your business.</h1>
+<p>We implement tailored AI solutions for small to medium-sized businesses — turning automation into profit.</p>
+<button class="cta-btn plain-btn">Get Started</button>
+</div>
+</div>
+
+<div class="right">
+<div class="hero-right">
+<h1 class="creative-heading">From insight to action — instantly.</h1>
+<p class="creative-text">AI that adapts to your style, learns from your data, and scales with your ambition.</p>
+<button class="cta-btn creative-btn">Let’s Talk</button>
+</div>
+</div>
+
+<div class="divider"></div>
+</div>
+
+<script>
+const divider = document.querySelector('.divider');
+const left = document.querySelector('.left');
+const right = document.querySelector('.right');
+const logo = document.querySelector('.logo');
+const toggle = document.querySelector('.toggle');
+const navLinks = document.querySelectorAll('nav a');
+
+let isDragging = false;
+let currentPercent = 50;
+
+function updateLogoGradient(offset) {
+const logoRect = logo.getBoundingClientRect();
+const overlap = Math.max(0, Math.min(logoRect.width, offset - logoRect.left));
+const percentage = Math.min(1, overlap / logoRect.width);
+
+logo.style.background = `linear-gradient(to right, #000 ${percentage * 100}%, #F59E0B ${percentage * 100}%)`;
+logo.style.webkitBackgroundClip = "text";
+logo.style.webkitTextFillColor = "transparent";
+}
+
+function updateNavGradient(offset) {
+navLinks.forEach(link => {
+const linkRect = link.getBoundingClientRect();
+const overlap = Math.max(0, Math.min(linkRect.width, offset - linkRect.left));
+const percentage = Math.min(1, overlap / linkRect.width);
+
+link.style.background = `linear-gradient(to right, #000 ${percentage * 100}%, #fff ${percentage * 100}%)`;
+link.style.webkitBackgroundClip = "text";
+link.style.webkitTextFillColor = "transparent";
+});
+}
+
+function moveDivider(percent) {
+const minPercent = 3;
+const maxPercent = 97;
+if (percent < minPercent) percent = minPercent;
+if (percent > maxPercent) percent = maxPercent;
+
+currentPercent = percent;
+const offset = (percent / 100) * window.innerWidth;
+
+left.style.width = `${percent}%`;
+right.style.left = `${percent}%`;
+right.style.width = `${100 - percent}%`;
+divider.style.left = `${percent}%`;
+
+updateLogoGradient(offset);
+updateNavGradient(offset);
+updateToggleState();
+}
+
+function updateToggleState() {
+if (currentPercent > 50) {
+toggle.classList.add('colorful');
+} else {
+toggle.classList.remove('colorful');
+}
+}
+
+divider.addEventListener('mousedown', () => {
+isDragging = true;
+document.body.style.cursor = 'ew-resize';
+});
+document.addEventListener('mouseup', () => {
+isDragging = false;
+document.body.style.cursor = 'default';
+});
+document.addEventListener('mousemove', (e) => {
+if (!isDragging) return;
+moveDivider((e.clientX / window.innerWidth) * 100);
+});
+
+divider.addEventListener('touchstart', () => { isDragging = true; });
+document.addEventListener('touchend', () => { isDragging = false; });
+document.addEventListener('touchmove', (e) => {
+if (!isDragging) return;
+moveDivider((e.touches[0].clientX / window.innerWidth) * 100);
+});
+
+toggle.addEventListener('click', () => {
+let target = currentPercent > 50 ? 3 : 97;
+let step = target > currentPercent ? 1 : -1;
+let anim = setInterval(() => {
+if ((step > 0 && currentPercent >= target) || (step < 0 && currentPercent <= target)) {
+clearInterval(anim);
+} else {
+moveDivider(currentPercent + step);
+}
+}, 5);
+});
+
+moveDivider(50);
+</script>
+
+</body>
+</html>
