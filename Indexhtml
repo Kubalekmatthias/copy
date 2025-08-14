@@ -1,292 +1,308 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZWAIS Split View Demo</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LevelOut Pilates München – Reformer Pilates</title>
+<meta name="description" content="LevelOut bringt Reformer Pilates nach München. Intro-Angebot: 3 Classes for 30 €. Buche jetzt – kleine Gruppen, klare Anleitung, starke Community.">
+<meta name="theme-color" content="#59D8E6">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico">
+<meta property="og:title" content="LevelOut Pilates München">
+<meta property="og:description" content="Reformer Pilates • 3 Classes for 30 € • München">
+<meta property="og:type" content="website">
+<meta property="og:image" content="cover.jpg">
 
 <style>
-@font-face {
-font-family: 'TS Crude';
-src: url("/fonts/TS_crude/TS Crude.ttf") format('truetype');
-font-weight: normal;
-font-style: normal;
-font-display: swap;
+:root{
+--brand:#59D8E6; /* LevelOut Türkis */
+--ink:#0b1220;
+--muted:#667085;
+--bg:#ffffff;
+--bg-alt:#f6f8fb;
+--radius:16px;
+--shadow:0 8px 24px rgba(0,0,0,.08);
 }
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1140px;margin-inline:auto;padding:0 20px}
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+.topbar{background:var(--brand);color:#03343b;text-align:center;font-weight:800;font-size:14px;padding:8px 16px}
+.topbar a{text-decoration:underline}
+header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:.2px}
+.logo .dot{width:28px;height:28px;border-radius:50%;background:var(--brand)}
+.nav a.cta{background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font-weight:700}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body, html {
-height: 100%;
-font-family: 'Inter', sans-serif;
-overflow: hidden;
-user-select: none;
-}
+section{padding:56px 0}
+.hero{padding:48px 0 28px}
+.hero h1{font-size:clamp(32px,5vw,56px);line-height:1.05;margin:0 0 12px;font-weight:800}
+.lead{font-size:clamp(16px,2.6vw,20px);color:var(--muted);max-width:760px;margin:0 0 18px}
+.pill{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.2px;background:var(--bg-alt);padding:6px 10px;border-radius:999px}
+.btn{display:inline-block;padding:14px 18px;border-radius:999px;font-weight:800;border:2px solid var(--ink)}
+.btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.alt{border-color:var(--brand);background:var(--brand);color:#00323a}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.grid{display:grid;gap:18px}
+@media (min-width:800px){ .grid.cols-3{grid-template-columns:repeat(3,1fr)} }
+.card{background:#fff;border:1px solid #eee;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.price{font-size:28px;font-weight:800}
+.muted{color:var(--muted)}
+.split{display:grid;gap:24px}
+@media (min-width:960px){ .split{grid-template-columns:1.15fr .85fr} }
 
-.container {
-position: relative;
-height: 100%;
-width: 100%;
-}
+footer{border-top:1px solid #eee;padding:36px 0;margin-top:20px}
+.footer-grid{display:grid;gap:16px}
+@media (min-width:820px){ .footer-grid{grid-template-columns:2fr 1fr 1fr 1fr} }
 
-.left, .right {
-position: absolute;
-top: 0; bottom: 0;
-overflow: hidden;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 2rem;
-text-align: center;
-}
+.whatsapp{position:fixed;right:16px;bottom:16px;background:#25D366;color:#fff;border-radius:999px;padding:12px 16px;font-weight:800;box-shadow:var(--shadow)}
 
-.left {
-background: #F7F8FA;
-color: #111;
-left: 0;
-width: 50%;
-}
-
-.right {
-background: linear-gradient(135deg, #1E3A8A, #9333EA, #F59E0B);
-left: 50%;
-width: 50%;
-color: white;
-}
-
-.divider {
-position: absolute;
-top: 0;
-bottom: 0;
-left: 50%;
-width: 4px;
-background: rgba(255,255,255,0.6);
-cursor: ew-resize;
-z-index: 10;
-transition: background 0.3s ease;
-}
-.divider:hover { background: rgba(255,255,255,0.9); }
-
-.logo {
-position: absolute;
-top: 20px;
-left: 80px;
-font-family: 'TS Crude', sans-serif;
-font-size: 4rem;
-font-weight: normal;
-background: linear-gradient(to right, #000 0%, #F59E0B 0%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-pointer-events: none;
-z-index: 20;
-}
-
-/* Navigation */
-nav {
-position: absolute;
-top: 28px;
-left: 50%;
-transform: translateX(-50%);
-display: flex;
-gap: 2.5rem;
-font-weight: 600;
-font-size: 1rem;
-z-index: 25;
-}
-nav a {
-text-decoration: none;
-background: linear-gradient(to right, black 0%, white 0%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-transition: background 0.1s ease;
-}
-
-/* Apple-style toggle */
-.toggle {
-position: absolute;
-top: 20px;
-right: 40px;
-width: 50px;
-height: 28px;
-border-radius: 50px;
-background: #ccc;
-display: flex;
-align-items: center;
-padding: 3px;
-cursor: pointer;
-transition: background 0.3s ease;
-z-index: 30;
-}
-.toggle .knob {
-height: 22px;
-width: 22px;
-background: white;
-border-radius: 50%;
-transition: transform 0.3s ease;
-}
-.toggle.colorful {
-background: linear-gradient(90deg, #1E3A8A, #9333EA, #F59E0B);
-}
-.toggle.colorful .knob {
-transform: translateX(22px);
-}
-
-/* Buttons - Original style */
-.cta-btn {
-padding: 0.9rem 2rem;
-border-radius: 8px;
-font-size: 1rem;
-font-weight: 600;
-cursor: pointer;
-border: none;
-transition: all 0.3s ease;
-}
-.plain-btn {
-background: white;
-color: #111;
-}
-.plain-btn:hover {
-background: #ddd;
-}
-.creative-btn {
-background: #111;
-color: white;
-}
-.creative-btn:hover {
-background: #333;
-}
+.cookie{position:fixed;left:16px;right:16px;bottom:16px;background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);display:none}
+.cookie.show{display:flex;align-items:center;justify-content:space-between;gap:12px}
 </style>
+
+<!-- Strukturierte Daten -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"HealthClub",
+"name":"Level Out Pilates GmbH",
+"alternateName":"LevelOut Pilates München",
+"description":"Reformer Pilates in München. Intro-Angebot: 3 classes for 30 €.",
+"address":{"@type":"PostalAddress","addressLocality":"München","addressCountry":"DE"},
+"url":"https://<DEIN-GITHUB-PAGES-DOMAIN>/",
+"sameAs":["https://www.instagram.com/levelout.london/"],
+"openingHoursSpecification":[
+{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"06:00","closes":"19:00"},
+{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"06:00","closes":"17:00"},
+{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"09:00","closes":"12:00"}
+]
+}
+</script>
 </head>
 <body>
 
-<div class="container">
-<div class="logo">ZWAIS</div>
+<!-- Offer Bar -->
+<div class="topbar">
+TRY LEVELOUT — <strong>3 CLASSES FOR 30&nbsp;€</strong> · <a href="#pricing" aria-label="Buy now">Buy now</a>
+</div>
 
-<!-- Navigation -->
-<nav>
-<a href="#">Services</a>
-<a href="#">Experiments</a>
-<a href="#">Contact</a>
-<a href="#">About</a>
+<!-- Header -->
+<header>
+<div class="container nav">
+<div class="logo" aria-label="LevelOut">
+<span class="dot" aria-hidden="true"></span> LevelOut
+</div>
+<nav aria-label="Navigation">
+<a href="#classes">Classes</a>&nbsp;&nbsp;
+<a href="#pricing">Pricing</a>&nbsp;&nbsp;
+<a href="#contact" class="cta">Book</a>
 </nav>
+</div>
+</header>
 
-<div class="toggle"><div class="knob"></div></div>
-
-<div class="left">
-<div class="hero-left">
-<h1>Custom AI. Built for your business.</h1>
-<p>We implement tailored AI solutions for small to medium-sized businesses — turning automation into profit.</p>
-<button class="cta-btn plain-btn">Get Started</button>
+<main>
+<!-- Hero -->
+<section class="hero">
+<div class="container split">
+<div>
+<div class="pill">Munich • Reformer Pilates</div>
+<h1>Movement that feels good.</h1>
+<p class="lead">Same LevelOut energy, neue Stadt: Reformer Pilates in München – kleine Gruppen, klare Anleitung, starke Community.</p>
+<div class="cta-row">
+<a class="btn primary" href="#pricing">Buy Intro</a>
+<a class="btn alt" href="#classes">See classes</a>
+</div>
+<p class="muted" style="margin-top:10px">App booking via Mindbody – coming soon.</p>
+</div>
+<div>
+<div class="card">
+<strong>Already loved in London</strong>
+<p class="muted" style="margin:6px 0 12px">Studios u. a. in Brixton, Blackhorse Road, East Dulwich, Deptford, Wandsworth, East Village & mehr.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<span class="pill">Brixton</span>
+<span class="pill">Blackhorse Road</span>
+<span class="pill">Deptford</span>
+<span class="pill">East Dulwich</span>
+<span class="pill">Wandsworth</span>
+<span class="pill">East Village</span>
+</div>
+<p class="muted" style="margin-top:12px;font-size:12px">Intro Offer: 3 for 30 € – commitment-free.</p>
 </div>
 </div>
+</div>
+</section>
 
-<div class="right">
-<div class="hero-right">
-<h1 class="creative-heading">From insight to action — instantly.</h1>
-<p class="creative-text">AI that adapts to your style, learns from your data, and scales with your ambition.</p>
-<button class="cta-btn creative-btn">Let’s Talk</button>
+<!-- Classes -->
+<section id="classes">
+<div class="container">
+<div class="pill">Our Classes</div>
+<h2 style="margin:10px 0 18px">Find your sweet spot</h2>
+<div class="grid cols-3">
+<div class="card">
+<h3>Foundation</h3>
+<p class="muted">Neu am Reformer? Wir legen Basics & Technik – sicher, verständlich, effektiv.</p>
+</div>
+<div class="card">
+<h3>Reformer</h3>
+<p class="muted">Ganzkörper-Flow zwischen Kraft & Mobilität. Für kontinuierlichen Progress.</p>
+</div>
+<div class="card">
+<h3>Intense</h3>
+<p class="muted">Mehr Moves, mehr Burn, mehr Gründe wiederzukommen.</p>
+</div>
+<div class="card">
+<h3>Postnatal</h3>
+<p class="muted">Sanfter Wiederaufbau mit Fokus auf Core & Beckenboden.</p>
+</div>
+<div class="card">
+<h3>1:1 Reformer</h3>
+<p class="muted">Personal Training – Ziele, Tempo & Tagesform zählen.</p>
+</div>
+<div class="card">
+<h3>Corporate</h3>
+<p class="muted">Teambuilding & Stressabbau – maßgeschneiderte Sessions fürs Team.</p>
 </div>
 </div>
+</div>
+</section>
 
-<div class="divider"></div>
+<!-- Pricing -->
+<section id="pricing" style="background:var(--bg-alt)">
+<div class="container">
+<div class="pill">Pricing</div>
+<h2 style="margin:10px 0 18px">Start simple — no commitment</h2>
+<div class="grid cols-3">
+<div class="card">
+<h3>Intro • 3 Classes</h3>
+<div class="price">30&nbsp;€</div>
+<p class="muted">14 days validity from purchase.</p>
+<a class="btn alt" href="#contact">Buy Intro</a>
+</div>
+<div class="card">
+<h3>Single Class</h3>
+<div class="price">25&nbsp;€</div>
+<p class="muted">Gültig studioweit.</p>
+<a class="btn" href="#contact">Book</a>
+</div>
+<div class="card">
+<h3>Reformer 8</h3>
+<div class="price">130&nbsp;€ / month</div>
+<p class="muted">8 classes • 16,25 € / class</p>
+<a class="btn" href="#contact">Choose</a>
+</div>
+<div class="card">
+<h3>Reformer 10</h3>
+<div class="price">155&nbsp;€ / month</div>
+<p class="muted">10 classes • flexible</p>
+<a class="btn" href="#contact">Choose</a>
+</div>
+<div class="card">
+<h3>Reformer 12</h3>
+<div class="price">180&nbsp;€ / month</div>
+<p class="muted">12 classes • progress</p>
+<a class="btn" href="#contact">Choose</a>
+</div>
+<div class="card">
+<h3>Reformer 15</h3>
+<div class="price">210&nbsp;€ / month</div>
+<p class="muted">15 classes • best value</p>
+<a class="btn" href="#contact">Choose</a>
+</div>
+<div class="card">
+<h3>Reformer 20</h3>
+<div class="price">250&nbsp;€ / month</div>
+<p class="muted">20 classes • power users</p>
+<a class="btn" href="#contact">Choose</a>
+</div>
+</div>
+<p class="muted" style="margin-top:10px;font-size:12px">
+Zahlen orientieren sich an London; finale Euro-Preise für München später ggf. anpassen.
+</p>
+</div>
+</section>
+
+<!-- Hours & Booking -->
+<section>
+<div class="container split">
+<div class="card">
+<div class="pill">Opening Hours (Munich)</div>
+<h3 style="margin:8px 0 6px">Vorläufige Studiozeiten</h3>
+<p>Mo–Do 06:00–19:00 · Fr 06:00–17:00 · Sa–So 09:00–12:00</p>
+<p class="muted" style="font-size:14px">Angelehnt an LevelOut East Village; endgültig per Kursplan.</p>
+</div>
+<div class="card">
+<div class="pill">App & Booking</div>
+<p>Buche Klassen mobil – Mindbody-Integration folgt. Warteliste schon jetzt möglich.</p>
+<div class="cta-row">
+<a class="btn primary" href="#contact">Join waitlist</a>
+<a class="btn" href="https://mndbdy.ly" target="_blank" rel="noopener">Open in app</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+<div class="container">
+<div class="card">
+<div class="pill">Contact</div>
+<h3 style="margin:8px 0 8px">Say hello</h3>
+<p><strong>E-Mail:</strong> <span class="muted">[info@…]</span> · <strong>Telefon:</strong> <span class="muted">[+49 …]</span></p>
+<form name="waitlist" onsubmit="event.preventDefault();this.reset();alert('Thanks! We will be in touch.');" style="margin-top:8px">
+<label for="email">Munich Waitlist</label><br/>
+<input id="email" name="email" type="email" placeholder="you@email.com" required
+style="width:100%;padding:14px 16px;border:1px solid #ddd;border-radius:10px;margin:8px 0">
+<button class="btn alt" type="submit">Join</button>
+</form>
+<p class="muted" style="font-size:12px">Mit dem Eintrag erlaubst du uns, dich per E-Mail zu kontaktieren.</p>
+</div>
+</div>
+</section>
+</main>
+
+<a class="whatsapp" href="https://api.whatsapp.com/send?phone=491579000000&text=Hi%20LevelOut%20M%C3%BCnchen%21" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
+
+<footer>
+<div class="container footer-grid">
+<div>
+<div class="logo"><span class="dot"></span> LevelOut</div>
+<p class="muted">Movement should feel good — physically & mentally.</p>
+<small>© <span id="y"></span> Level Out Pilates GmbH</small>
+</div>
+<div>
+<strong>Explore</strong><br>
+<a href="#classes">Classes</a><br>
+<a href="#pricing">Pricing</a><br>
+<a href="#contact">Contact</a>
+</div>
+<div>
+<strong>Rechtliches</strong><br>
+<a href="impressum.html">Impressum</a><br>
+<a href="datenschutz.html">Datenschutz</a>
+</div>
+<div>
+<strong>Follow</strong><br>
+<a href="https://www.instagram.com/levelout.london/" target="_blank" rel="noopener">Instagram</a><br>
+<a href="#" target="_blank" rel="noopener">TikTok</a>
+</div>
+</div>
+</footer>
+
+<div class="cookie" id="cookie">
+<span class="muted">Wir verwenden Cookies für grundlegende Funktionen. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</span>
+<button class="btn primary" id="cookie-ok">OK</button>
 </div>
 
 <script>
-const divider = document.querySelector('.divider');
-const left = document.querySelector('.left');
-const right = document.querySelector('.right');
-const logo = document.querySelector('.logo');
-const toggle = document.querySelector('.toggle');
-const navLinks = document.querySelectorAll('nav a');
-
-let isDragging = false;
-let currentPercent = 50;
-
-function updateLogoGradient(offset) {
-const logoRect = logo.getBoundingClientRect();
-const overlap = Math.max(0, Math.min(logoRect.width, offset - logoRect.left));
-const percentage = Math.min(1, overlap / logoRect.width);
-
-logo.style.background = `linear-gradient(to right, #000 ${percentage * 100}%, #F59E0B ${percentage * 100}%)`;
-logo.style.webkitBackgroundClip = "text";
-logo.style.webkitTextFillColor = "transparent";
-}
-
-function updateNavGradient(offset) {
-navLinks.forEach(link => {
-const linkRect = link.getBoundingClientRect();
-const overlap = Math.max(0, Math.min(linkRect.width, offset - linkRect.left));
-const percentage = Math.min(1, overlap / linkRect.width);
-
-link.style.background = `linear-gradient(to right, #000 ${percentage * 100}%, #fff ${percentage * 100}%)`;
-link.style.webkitBackgroundClip = "text";
-link.style.webkitTextFillColor = "transparent";
-});
-}
-
-function moveDivider(percent) {
-const minPercent = 3;
-const maxPercent = 97;
-if (percent < minPercent) percent = minPercent;
-if (percent > maxPercent) percent = maxPercent;
-
-currentPercent = percent;
-const offset = (percent / 100) * window.innerWidth;
-
-left.style.width = `${percent}%`;
-right.style.left = `${percent}%`;
-right.style.width = `${100 - percent}%`;
-divider.style.left = `${percent}%`;
-
-updateLogoGradient(offset);
-updateNavGradient(offset);
-updateToggleState();
-}
-
-function updateToggleState() {
-if (currentPercent > 50) {
-toggle.classList.add('colorful');
-} else {
-toggle.classList.remove('colorful');
-}
-}
-
-divider.addEventListener('mousedown', () => {
-isDragging = true;
-document.body.style.cursor = 'ew-resize';
-});
-document.addEventListener('mouseup', () => {
-isDragging = false;
-document.body.style.cursor = 'default';
-});
-document.addEventListener('mousemove', (e) => {
-if (!isDragging) return;
-moveDivider((e.clientX / window.innerWidth) * 100);
-});
-
-divider.addEventListener('touchstart', () => { isDragging = true; });
-document.addEventListener('touchend', () => { isDragging = false; });
-document.addEventListener('touchmove', (e) => {
-if (!isDragging) return;
-moveDivider((e.touches[0].clientX / window.innerWidth) * 100);
-});
-
-toggle.addEventListener('click', () => {
-let target = currentPercent > 50 ? 3 : 97;
-let step = target > currentPercent ? 1 : -1;
-let anim = setInterval(() => {
-if ((step > 0 && currentPercent >= target) || (step < 0 && currentPercent <= target)) {
-clearInterval(anim);
-} else {
-moveDivider(currentPercent + step);
-}
-}, 5);
-});
-
-moveDivider(50);
+document.getElementById('y').textContent=new Date().getFullYear();
+const c=document.getElementById('cookie'); const ok=document.getElementById('cookie-ok');
+if(!localStorage.getItem('lvlo_cookie_ok')) c.classList.add('show');
+ok.addEventListener('click',()=>{localStorage.setItem('lvlo_cookie_ok','1');c.classList.remove('show')});
 </script>
-
 </body>
 </html>
