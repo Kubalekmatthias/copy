@@ -1,18 +1,25 @@
+
 <!doctype html>
 <html lang="de">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>LevelOut Pilates München – Reformer Pilates</title>
-<meta name="description" content="LevelOut bringt Reformer Pilates nach München. Intro-Angebot: 3 Classes for 30 €. Buche jetzt – kleine Gruppen, klare Anleitung, starke Community.">
+<meta name="description" content="LevelOut bringt Reformer Pilates nach München. Intro: klar strukturierte Kurse, starke Community, faire Preise. Jetzt entdecken.">
+<link rel="canonical" href="https://DEIN-GITHUB-NAME.github.io/REPO-NAME/">
 <meta name="theme-color" content="#59D8E6">
+
+<!-- Open Graph -->
+<meta property="og:title" content="LevelOut Pilates München – Reformer Pilates">
+<meta property="og:description" content="Klar strukturierte Kurse, starke Community. Buche deine Klasse.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/cover.jpg">
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="icon" href="favicon.ico">
-<meta property="og:title" content="LevelOut Pilates München">
-<meta property="og:description" content="Reformer Pilates • 3 Classes for 30 € • München">
-<meta property="og:type" content="website">
-<meta property="og:image" content="cover.jpg">
+
+<link rel="icon" href="assets/favicon.ico">
 
 <style>
 :root{
@@ -23,58 +30,101 @@
 --bg-alt:#f6f8fb;
 --radius:16px;
 --shadow:0 8px 24px rgba(0,0,0,.08);
+--max:1140px;
+--sp:56px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.55}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.container{max-width:1140px;margin-inline:auto;padding:0 20px}
+img,video{max-width:100%;display:block}
+.container{max-width:var(--max);margin-inline:auto;padding:0 20px}
 
+/* Topbar + Header */
 .topbar{background:var(--brand);color:#03343b;text-align:center;font-weight:800;font-size:14px;padding:8px 16px}
 .topbar a{text-decoration:underline}
-header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:10}
+header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:60}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:.2px}
 .logo .dot{width:28px;height:28px;border-radius:50%;background:var(--brand)}
-.nav a.cta{background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font-weight:700}
+.right-actions a.cta{background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font-weight:700}
 
-section{padding:56px 0}
-.hero{padding:48px 0 28px}
-.hero h1{font-size:clamp(32px,5vw,56px);line-height:1.05;margin:0 0 12px;font-weight:800}
-.lead{font-size:clamp(16px,2.6vw,20px);color:var(--muted);max-width:760px;margin:0 0 18px}
+/* Hamburger / Drawer (links) */
+.burger{display:flex;align-items:center;gap:10px}
+.menu-btn{width:38px;height:28px;border:0;background:none;cursor:pointer;position:relative}
+.menu-btn span{position:absolute;left:0;right:0;height:3px;background:#0b1220;border-radius:2px;transition:.25s}
+.menu-btn span:nth-child(1){top:2px}
+.menu-btn span:nth-child(2){top:12px}
+.menu-btn span:nth-child(3){top:22px}
+.menu-btn.active span:nth-child(1){transform:translateY(10px) rotate(45deg)}
+.menu-btn.active span:nth-child(2){opacity:0}
+.menu-btn.active span:nth-child(3){transform:translateY(-10px) rotate(-45deg)}
+
+.drawer{position:fixed;inset:0 40% 0 0;max-width:320px;background:#fff;border-right:1px solid #eee;
+transform:translateX(-100%);transition:transform .25s ease;z-index:80;padding:18px}
+.drawer.open{transform:none}
+.drawer a{display:block;padding:12px 6px;font-weight:800}
+.drawer .muted{margin:8px 6px 0 6px}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s;z-index:70}
+.backdrop.show{opacity:1;pointer-events:auto}
+
+/* Components */
 .pill{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.2px;background:var(--bg-alt);padding:6px 10px;border-radius:999px}
 .btn{display:inline-block;padding:14px 18px;border-radius:999px;font-weight:800;border:2px solid var(--ink)}
 .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
 .btn.alt{border-color:var(--brand);background:var(--brand);color:#00323a}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.muted{color:var(--muted)}
+.section{padding:var(--sp) 0}
+.hero{padding:24px 0 8px}
+.hero h1{font-size:clamp(32px,5vw,56px);line-height:1.05;margin:12px 0 8px;font-weight:800}
+.lead{font-size:clamp(16px,2.6vw,20px);color:var(--muted);max-width:760px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
 .grid{display:grid;gap:18px}
 @media (min-width:800px){ .grid.cols-3{grid-template-columns:repeat(3,1fr)} }
 .card{background:#fff;border:1px solid #eee;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
 .price{font-size:28px;font-weight:800}
-.muted{color:var(--muted)}
 .split{display:grid;gap:24px}
-@media (min-width:960px){ .split{grid-template-columns:1.15fr .85fr} }
-
+@media (min-width:960px){ .split{grid-template-columns:1.1fr .9fr} }
 footer{border-top:1px solid #eee;padding:36px 0;margin-top:20px}
 .footer-grid{display:grid;gap:16px}
 @media (min-width:820px){ .footer-grid{grid-template-columns:2fr 1fr 1fr 1fr} }
+.whatsapp{position:fixed;right:16px;bottom:16px;background:#25D366;color:#fff;border-radius:999px;padding:12px 16px;font-weight:800;box-shadow:var(--shadow);z-index:50}
 
-.whatsapp{position:fixed;right:16px;bottom:16px;background:#25D366;color:#fff;border-radius:999px;padding:12px 16px;font-weight:800;box-shadow:var(--shadow)}
+/* Galerie */
+.gallery{display:grid;gap:12px}
+@media(min-width:760px){ .gallery{grid-template-columns:2fr 1fr 1fr} .gallery img:first-child{grid-row:span 2} }
 
-.cookie{position:fixed;left:16px;right:16px;bottom:16px;background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);display:none}
-.cookie.show{display:flex;align-items:center;justify-content:space-between;gap:12px}
+/* Scroll-Reveal (dezent) */
+[data-animate]{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease}
+[data-animate].in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+html{scroll-behavior:auto}
+[data-animate]{opacity:1;transform:none;transition:none}
+}
+
+/* Rechtliches */
+.legal{scroll-margin-top:96px}
+.legal .block{background:#fff;border:1px solid #eee;border-radius:12px;padding:18px;margin:12px 0}
+.legal h1{font-size:28px;margin:0 0 12px}
+.legal h2{font-size:20px;margin:18px 0 8px}
+
+/* Cookie-Hinweis */
+.cookie{position:fixed;left:16px;right:16px;bottom:16px;background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);display:none;z-index:90}
+.cookie.show{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cookie .actions{display:flex;gap:8px}
+.sr-only{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
 </style>
 
-<!-- Strukturierte Daten -->
+<!-- Schema.org: LocalBusiness + FAQ -->
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
 "@type":"HealthClub",
 "name":"Level Out Pilates GmbH",
 "alternateName":"LevelOut Pilates München",
-"description":"Reformer Pilates in München. Intro-Angebot: 3 classes for 30 €.",
+"description":"Reformer Pilates in München. Einzelklasse 20 €.",
 "address":{"@type":"PostalAddress","addressLocality":"München","addressCountry":"DE"},
-"url":"https://<DEIN-GITHUB-PAGES-DOMAIN>/",
+"url":"https://DEIN-GITHUB-NAME.github.io/REPO-NAME/",
 "sameAs":["https://www.instagram.com/levelout.london/"],
 "openingHoursSpecification":[
 {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"06:00","closes":"19:00"},
@@ -83,207 +133,281 @@ footer{border-top:1px solid #eee;padding:36px 0;margin-top:20px}
 ]
 }
 </script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [{
+"@type": "Question",
+"name": "Kann ich als Anfänger:in starten?",
+"acceptedAnswer": {"@type":"Answer","text":"Ja. Buche Foundation oder nutze das Intro-Angebot."}
+},{
+"@type":"Question",
+"name":"Welche Kleidung brauche ich?",
+"acceptedAnswer":{"@type":"Answer","text":"Bequeme Sportkleidung, rutschfeste Socken empfohlen."}
+},{
+"@type":"Question",
+"name":"Wie storniere ich?",
+"acceptedAnswer":{"@type":"Answer","text":"Stornierung bis zur Frist möglich; Details im Buchungsprozess."}
+}]
+}
+</script>
 </head>
 <body>
 
 <!-- Offer Bar -->
 <div class="topbar">
-TRY LEVELOUT — <strong>3 CLASSES FOR 30&nbsp;€</strong> · <a href="#pricing" aria-label="Buy now">Buy now</a>
+WELCOME TO LEVELOUT — <strong>Einzelklasse nur 20&nbsp;€</strong> · <a href="#booking" aria-label="Jetzt buchen">Jetzt buchen</a>
 </div>
 
 <!-- Header -->
 <header>
 <div class="container nav">
+<div class="burger">
+<button class="menu-btn" id="menuBtn" aria-label="Menü öffnen" aria-controls="drawer" aria-expanded="false">
+<span></span><span></span><span></span>
+</button>
 <div class="logo" aria-label="LevelOut">
 <span class="dot" aria-hidden="true"></span> LevelOut
 </div>
-<nav aria-label="Navigation">
-<a href="#classes">Classes</a>&nbsp;&nbsp;
-<a href="#pricing">Pricing</a>&nbsp;&nbsp;
-<a href="#contact" class="cta">Book</a>
-</nav>
+</div>
+<div class="right-actions">
+<a class="cta" href="#booking">Buchen</a>
+</div>
 </div>
 </header>
 
-<main>
-<!-- Hero -->
-<section class="hero">
+<!-- Drawer Menü -->
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Hauptmenü">
+<a href="#studio" onclick="closeMenu()">Studio</a>
+<a href="#classes" onclick="closeMenu()">Kurse</a>
+<a href="#trainers" onclick="closeMenu()">Trainers</a>
+<a href="#booking" onclick="closeMenu()">Buchen</a>
+<p class="muted">LevelOut Pilates München</p>
+</div>
+<div class="backdrop" id="backdrop" onclick="closeMenu()" aria-hidden="true"></div>
+
+<!-- HERO mit Video -->
+<section id="studio" class="hero">
 <div class="container split">
-<div>
+<div data-animate>
 <div class="pill">Munich • Reformer Pilates</div>
 <h1>Movement that feels good.</h1>
-<p class="lead">Same LevelOut energy, neue Stadt: Reformer Pilates in München – kleine Gruppen, klare Anleitung, starke Community.</p>
+<p class="lead">Klar strukturierte Klassen, sinnvolle Progression und eine Community, die dich trägt.</p>
 <div class="cta-row">
-<a class="btn primary" href="#pricing">Buy Intro</a>
-<a class="btn alt" href="#classes">See classes</a>
+<a class="btn primary" href="#booking">Jetzt buchen</a>
+<a class="btn alt" href="#classes">Kurse ansehen</a>
 </div>
-<p class="muted" style="margin-top:10px">App booking via Mindbody – coming soon.</p>
+<p class="muted" style="margin-top:10px">App-Booking via Mindbody – coming soon.</p>
 </div>
-<div>
-<div class="card">
-<strong>Already loved in London</strong>
-<p class="muted" style="margin:6px 0 12px">Studios u. a. in Brixton, Blackhorse Road, East Dulwich, Deptford, Wandsworth, East Village & mehr.</p>
-<div style="display:flex;gap:10px;flex-wrap:wrap">
-<span class="pill">Brixton</span>
-<span class="pill">Blackhorse Road</span>
-<span class="pill">Deptford</span>
-<span class="pill">East Dulwich</span>
-<span class="pill">Wandsworth</span>
-<span class="pill">East Village</span>
-</div>
-<p class="muted" style="margin-top:12px;font-size:12px">Intro Offer: 3 for 30 € – commitment-free.</p>
-</div>
+<div data-animate>
+<!-- Ersetze assets/hero.mp4 & poster.jpg durch deine Dateien -->
+<video preload="metadata" playsinline muted loop autoplay poster="assets/poster.jpg" style="border-radius:16px;box-shadow:var(--shadow)" aria-label="Reformer Pilates Video">
+<source src="assets/hero.mp4" type="video/mp4">
+<img src="assets/poster.jpg" alt="Reformer Pilates im Studio">
+</video>
 </div>
 </div>
 </section>
 
-<!-- Classes -->
-<section id="classes">
-<div class="container">
+<!-- Galerie -->
+<section class="section" aria-label="Im Studio">
+<div class="container" data-animate>
+<div class="gallery">
+<img src="assets/studio-1.jpg" loading="lazy" alt="Reformer Reihe im Studio" style="border-radius:12px">
+<img src="assets/detail-1.jpg" loading="lazy" alt="Detail Reformer" style="border-radius:12px">
+<img src="assets/coach-1.jpg" loading="lazy" alt="Coach bei der Anleitung" style="border-radius:12px">
+</div>
+</div>
+</section>
+
+<!-- Kurse -->
+<section id="classes" class="section" aria-labelledby="classes-title">
+<div class="container" data-animate>
 <div class="pill">Our Classes</div>
-<h2 style="margin:10px 0 18px">Find your sweet spot</h2>
+<h2 id="classes-title" style="margin:10px 0 18px">Find your sweet spot</h2>
 <div class="grid cols-3">
+<div class="card"><h3>Foundation</h3><p class="muted">Neu am Reformer? Basics & Technik – sicher, verständlich, effektiv.</p></div>
+<div class="card"><h3>Reformer</h3><p class="muted">Ganzkörper-Flow zwischen Kraft & Mobilität. Für kontinuierlichen Progress.</p></div>
+<div class="card"><h3>Intense</h3><p class="muted">Mehr Moves, mehr Burn, mehr Gründe wiederzukommen.</p></div>
+<div class="card"><h3>Postnatal</h3><p class="muted">Sanfter Wiederaufbau mit Fokus auf Core & Beckenboden.</p></div>
+<div class="card"><h3>1:1 Reformer</h3><p class="muted">Personal Training – Ziele, Tempo & Tagesform zählen.</p></div>
+<div class="card"><h3>Corporate</h3><p class="muted">Teambuilding & Stressabbau – maßgeschneiderte Sessions fürs Team.</p></div>
+</div>
+</div>
+</section>
+
+<!-- Trainers -->
+<section id="trainers" class="section" aria-labelledby="trainers-title" style="background:var(--bg-alt)">
+<div class="container" data-animate>
+<div class="pill">Trainers</div>
+<h2 id="trainers-title" style="margin:10px 0 18px">Guidance that clicks</h2>
+<div class="grid cols-3">
+<!-- Platzhalter – ersetze Bild/Name/Bio -->
 <div class="card">
-<h3>Foundation</h3>
-<p class="muted">Neu am Reformer? Wir legen Basics & Technik – sicher, verständlich, effektiv.</p>
+<img src="assets/trainer-a.jpg" alt="Trainer A" loading="lazy" style="border-radius:10px;margin-bottom:8px">
+<strong>Trainer A</strong>
+<p class="muted">Reformer Fundamentals, Technik & Flow.</p>
 </div>
 <div class="card">
-<h3>Reformer</h3>
-<p class="muted">Ganzkörper-Flow zwischen Kraft & Mobilität. Für kontinuierlichen Progress.</p>
+<img src="assets/trainer-b.jpg" alt="Trainer B" loading="lazy" style="border-radius:10px;margin-bottom:8px">
+<strong>Trainer B</strong>
+<p class="muted">Intense, Power, klare Cues.</p>
 </div>
 <div class="card">
-<h3>Intense</h3>
-<p class="muted">Mehr Moves, mehr Burn, mehr Gründe wiederzukommen.</p>
-</div>
-<div class="card">
-<h3>Postnatal</h3>
-<p class="muted">Sanfter Wiederaufbau mit Fokus auf Core & Beckenboden.</p>
-</div>
-<div class="card">
-<h3>1:1 Reformer</h3>
-<p class="muted">Personal Training – Ziele, Tempo & Tagesform zählen.</p>
-</div>
-<div class="card">
-<h3>Corporate</h3>
-<p class="muted">Teambuilding & Stressabbau – maßgeschneiderte Sessions fürs Team.</p>
+<img src="assets/trainer-c.jpg" alt="Trainer C" loading="lazy" style="border-radius:10px;margin-bottom:8px">
+<strong>Trainer C</strong>
+<p class="muted">Postnatal & Mobility.</p>
 </div>
 </div>
 </div>
 </section>
 
-<!-- Pricing -->
-<section id="pricing" style="background:var(--bg-alt)">
-<div class="container">
-<div class="pill">Pricing</div>
-<h2 style="margin:10px 0 18px">Start simple — no commitment</h2>
+<!-- Pricing / Buchen -->
+<section id="booking" class="section" aria-labelledby="booking-title">
+<div class="container" data-animate>
+<div class="pill">Pricing & Booking</div>
+<h2 id="booking-title" style="margin:10px 0 18px">Einfach buchen — 20&nbsp;€ / Stunde</h2>
 <div class="grid cols-3">
-<div class="card">
-<h3>Intro • 3 Classes</h3>
-<div class="price">30&nbsp;€</div>
-<p class="muted">14 days validity from purchase.</p>
-<a class="btn alt" href="#contact">Buy Intro</a>
+<div class="card"><h3>Einzelklasse</h3><div class="price">20&nbsp;€</div><p class="muted">60 Minuten • Reformer</p><a class="btn alt" href="#contact">Buchen</a></div>
+<div class="card"><h3>5er Karte</h3><div class="price">100&nbsp;€</div><p class="muted">Spare Zeit & Planung</p><a class="btn" href="#contact">Wählen</a></div>
+<div class="card"><h3>10er Karte</h3><div class="price">200&nbsp;€</div><p class="muted">Best Value • flexibel</p><a class="btn" href="#contact">Wählen</a></div>
 </div>
-<div class="card">
-<h3>Single Class</h3>
-<div class="price">25&nbsp;€</div>
-<p class="muted">Gültig studioweit.</p>
-<a class="btn" href="#contact">Book</a>
-</div>
-<div class="card">
-<h3>Reformer 8</h3>
-<div class="price">130&nbsp;€ / month</div>
-<p class="muted">8 classes • 16,25 € / class</p>
-<a class="btn" href="#contact">Choose</a>
-</div>
-<div class="card">
-<h3>Reformer 10</h3>
-<div class="price">155&nbsp;€ / month</div>
-<p class="muted">10 classes • flexible</p>
-<a class="btn" href="#contact">Choose</a>
-</div>
-<div class="card">
-<h3>Reformer 12</h3>
-<div class="price">180&nbsp;€ / month</div>
-<p class="muted">12 classes • progress</p>
-<a class="btn" href="#contact">Choose</a>
-</div>
-<div class="card">
-<h3>Reformer 15</h3>
-<div class="price">210&nbsp;€ / month</div>
-<p class="muted">15 classes • best value</p>
-<a class="btn" href="#contact">Choose</a>
-</div>
-<div class="card">
-<h3>Reformer 20</h3>
-<div class="price">250&nbsp;€ / month</div>
-<p class="muted">20 classes • power users</p>
-<a class="btn" href="#contact">Choose</a>
-</div>
-</div>
-<p class="muted" style="margin-top:10px;font-size:12px">
-Zahlen orientieren sich an London; finale Euro-Preise für München später ggf. anpassen.
-</p>
+<p class="muted" style="margin-top:10px;font-size:12px">Preise als Beispiel. Endgültige Werte und Stornofristen im Buchungssystem.</p>
 </div>
 </section>
 
-<!-- Hours & Booking -->
-<section>
-<div class="container split">
+<!-- Öffnungszeiten / App -->
+<section class="section">
+<div class="container split" data-animate>
 <div class="card">
 <div class="pill">Opening Hours (Munich)</div>
-<h3 style="margin:8px 0 6px">Vorläufige Studiozeiten</h3>
+<h3 style="margin:8px 0 6px">Studiozeiten</h3>
 <p>Mo–Do 06:00–19:00 · Fr 06:00–17:00 · Sa–So 09:00–12:00</p>
-<p class="muted" style="font-size:14px">Angelehnt an LevelOut East Village; endgültig per Kursplan.</p>
+<p class="muted" style="font-size:14px">Endgültig per Kursplan im Booking.</p>
 </div>
 <div class="card">
 <div class="pill">App & Booking</div>
-<p>Buche Klassen mobil – Mindbody-Integration folgt. Warteliste schon jetzt möglich.</p>
+<p>Mindbody-Integration folgt. Warteliste schon jetzt möglich.</p>
 <div class="cta-row">
-<a class="btn primary" href="#contact">Join waitlist</a>
-<a class="btn" href="https://mndbdy.ly" target="_blank" rel="noopener">Open in app</a>
+<a class="btn primary" href="#contact">Warteliste</a>
+<a class="btn" href="https://mndbdy.ly" target="_blank" rel="noopener">In der App öffnen</a>
 </div>
 </div>
 </div>
 </section>
 
-<!-- Contact -->
-<section id="contact">
-<div class="container">
+<!-- Kontakt -->
+<section id="contact" class="section">
+<div class="container" data-animate>
 <div class="card">
-<div class="pill">Contact</div>
-<h3 style="margin:8px 0 8px">Say hello</h3>
-<p><strong>E-Mail:</strong> <span class="muted">[info@…]</span> · <strong>Telefon:</strong> <span class="muted">[+49 …]</span></p>
-<form name="waitlist" onsubmit="event.preventDefault();this.reset();alert('Thanks! We will be in touch.');" style="margin-top:8px">
-<label for="email">Munich Waitlist</label><br/>
-<input id="email" name="email" type="email" placeholder="you@email.com" required
+<div class="pill">Kontakt</div>
+<h3 style="margin:8px 0 8px">Sag Hallo</h3>
+<p><strong>Unternehmen:</strong> Level Out Pilates GmbH<br>
+<strong>E-Mail:</strong> <span class="muted">[info@…]</span> · <strong>Telefon:</strong> <span class="muted">[+49 …]</span></p>
+<form name="waitlist" onsubmit="event.preventDefault();this.reset();alert('Danke! Wir melden uns bald.');" style="margin-top:8px">
+<label class="sr-only" for="email">E-Mail</label>
+<input id="email" name="email" type="email" placeholder="deine@email.de" required
 style="width:100%;padding:14px 16px;border:1px solid #ddd;border-radius:10px;margin:8px 0">
-<button class="btn alt" type="submit">Join</button>
+<button class="btn alt" type="submit">Warteliste beitreten</button>
 </form>
 <p class="muted" style="font-size:12px">Mit dem Eintrag erlaubst du uns, dich per E-Mail zu kontaktieren.</p>
 </div>
 </div>
 </section>
-</main>
 
+<!-- Impressum -->
+<section id="impressum" class="section legal" aria-labelledby="imp-title">
+<div class="container" data-animate>
+<h1 id="imp-title">Impressum</h1>
+<div class="block">
+<p><strong>Dienstanbieter / Verantwortlich nach § 5 TMG:</strong><br>
+Level Out Pilates GmbH<br>
+<span class="muted">[Straße Hausnummer], [PLZ] München, Deutschland</span></p>
+<p><strong>Kontakt:</strong><br>
+Telefon: <span class="muted">[+49 …]</span><br>
+E-Mail: <span class="muted">[info@…]</span></p>
+<p><strong>Vertretungsberechtigte Person(en):</strong><br>
+<span class="muted">[Geschäftsführer:in / Inhaber:in]</span></p>
+<p><strong>Registereintrag:</strong><br>
+<span class="muted">Handelsregister: [Amtsgericht München], HRB [Nummer] (falls vorhanden)</span></p>
+<p><strong>Umsatzsteuer-ID:</strong><br>
+<span class="muted">DE[xxxxx] (falls vorhanden)</span></p>
+</div>
+<div class="block">
+<p><strong>Haftung für Inhalte</strong><br>Eigene Inhalte nach allgemeinen Gesetzen; keine Gewähr für Richtigkeit/Vollständigkeit/Aktualität.</p>
+<p><strong>Haftung für Links</strong><br>Für externe Inhalte ist der jeweilige Anbieter verantwortlich; bei Rechtsverstößen entfernen wir Links umgehend.</p>
+<p><strong>Urheberrecht</strong><br>Inhalte/Werke unterliegen dem deutschen Urheberrecht. Nutzung nur mit Zustimmung der Rechteinhaber.</p>
+</div>
+</div>
+</section>
+
+<!-- Datenschutz -->
+<section id="datenschutz" class="section legal" style="background:var(--bg-alt)" aria-labelledby="ds-title">
+<div class="container" data-animate>
+<h1 id="ds-title">Datenschutzerklärung</h1>
+<div class="block">
+<h2>1. Verantwortlicher</h2>
+<p><strong>Level Out Pilates GmbH</strong><br>
+<span class="muted">[Straße Hausnummer], [PLZ] München, Deutschland</span><br>
+E-Mail: <span class="muted">[info@…]</span> · Telefon: <span class="muted">[+49 …]</span></p>
+
+<h2>2. Zweck & Rechtsgrundlagen</h2>
+<p>Verarbeitung gem. Art. 6 Abs. 1 lit. a (Einwilligung), lit. b (Vertrag/Anbahnung), lit. f (berechtigtes Interesse) DSGVO.</p>
+
+<h2>3. Bereitstellung der Website & Server-Logs</h2>
+<p>Automatische Logfiles (gekürzte IP, Datum/Uhrzeit, URL, Referrer, User-Agent) durch Hosting-Provider zur technischen Bereitstellung/IT-Sicherheit; Löschung üblicherweise nach <span class="muted">[7–14]</span> Tagen; Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+<h2>4. Kontakt & Warteliste</h2>
+<p>Verarbeitung der Angaben zur Bearbeitung der Anfrage; Pflichtfeld: E-Mail. Rechtsgrundlage: Art. 6 Abs. 1 lit. b bzw. a DSGVO. Löschung nach Zweckerfüllung und Ablauf gesetzlicher Fristen.</p>
+
+<h2>5. Cookies</h2>
+<p>Wir verwenden notwendige Cookies (z. B. Einwilligungs-Speicherung). Grundlage: § 25 Abs. 2 TTDSG, Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+<h2>6. Analytik & Tracking</h2>
+<p>Falls wir Analyse-Dienste (z. B. Google Analytics 4) einsetzen, geschieht dies nur mit Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Details werden ergänzt, sobald aktiv. Bis dahin kein Tracking.</p>
+
+<h2>7. Auftragsverarbeitung & Empfänger</h2>
+<p>Dienstleister (Hosting, E-Mail, Buchung/Mindbody) auf Basis von AV-Verträgen; Drittlandübermittlungen nur mit geeigneten Garantien (Art. 44 ff. DSGVO).</p>
+
+<h2>8. Speicherdauer</h2>
+<p>Speicherung nur solange erforderlich bzw. gesetzlich vorgeschrieben.</p>
+
+<h2>9. Ihre Rechte</h2>
+<p>Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch (Art. 15–21 DSGVO) sowie Beschwerde bei der Aufsichtsbehörde (z. B. BayLDA).</p>
+
+<h2>10. Widerruf von Einwilligungen</h2>
+<p>Einwilligungen können jederzeit mit Wirkung für die Zukunft widerrufen werden.</p>
+
+<h2>11. Änderungen</h2>
+<p>Diese Erklärung wird angepasst, wenn sich Rechtslage oder Dienste ändern.</p>
+</div>
+<p class="muted">Stand: <span id="ds-date"></span></p>
+</div>
+</section>
+
+<!-- WhatsApp -->
 <a class="whatsapp" href="https://api.whatsapp.com/send?phone=491579000000&text=Hi%20LevelOut%20M%C3%BCnchen%21" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
 
+<!-- Footer -->
 <footer>
 <div class="container footer-grid">
 <div>
 <div class="logo"><span class="dot"></span> LevelOut</div>
 <p class="muted">Movement should feel good — physically & mentally.</p>
-<small>© <span id="y"></span> Level Out Pilates GmbH</small>
+<small>© <span id="year"></span> Level Out Pilates GmbH</small>
 </div>
 <div>
 <strong>Explore</strong><br>
-<a href="#classes">Classes</a><br>
-<a href="#pricing">Pricing</a><br>
-<a href="#contact">Contact</a>
+<a href="#studio">Studio</a><br>
+<a href="#classes">Kurse</a><br>
+<a href="#trainers">Trainers</a><br>
+<a href="#booking">Buchen</a>
 </div>
 <div>
 <strong>Rechtliches</strong><br>
-<a href="impressum.html">Impressum</a><br>
-<a href="datenschutz.html">Datenschutz</a>
+<a href="#impressum">Impressum</a><br>
+<a href="#datenschutz">Datenschutz</a>
 </div>
 <div>
 <strong>Follow</strong><br>
@@ -293,16 +417,38 @@ style="width:100%;padding:14px 16px;border:1px solid #ddd;border-radius:10px;mar
 </div>
 </footer>
 
+<!-- Cookie-Hinweis -->
 <div class="cookie" id="cookie">
-<span class="muted">Wir verwenden Cookies für grundlegende Funktionen. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</span>
-<button class="btn primary" id="cookie-ok">OK</button>
+<span class="muted">Wir verwenden essentielle Cookies. Details in der <a href="#datenschutz">Datenschutzerklärung</a>.</span>
+<div class="actions">
+<button class="btn" id="cookie-decline">Nur essenziell</button>
+<button class="btn primary" id="cookie-accept">Einverstanden</button>
+</div>
 </div>
 
 <script>
-document.getElementById('y').textContent=new Date().getFullYear();
-const c=document.getElementById('cookie'); const ok=document.getElementById('cookie-ok');
-if(!localStorage.getItem('lvlo_cookie_ok')) c.classList.add('show');
-ok.addEventListener('click',()=>{localStorage.setItem('lvlo_cookie_ok','1');c.classList.remove('show')});
+// Jahr / Datum
+document.getElementById('year').textContent=new Date().getFullYear();
+document.getElementById('ds-date').textContent=new Date().toLocaleDateString('de-DE');
+
+// Scroll-Reveal
+const els=[...document.querySelectorAll('[data-animate]')];
+const io=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15});
+els.forEach(el=>io.observe(el));
+
+// Hamburger Drawer
+const menuBtn=document.getElementById('menuBtn');
+const drawer=document.getElementById('drawer');
+const backdrop=document.getElementById('backdrop');
+function openMenu(){drawer.classList.add('open');backdrop.classList.add('show');menuBtn.classList.add('active');menuBtn.setAttribute('aria-expanded','true')}
+function closeMenu(){drawer.classList.remove('open');backdrop.classList.remove('show');menuBtn.classList.remove('active');menuBtn.setAttribute('aria-expanded','false')}
+menuBtn.addEventListener('click',()=>drawer.classList.contains('open')?closeMenu():openMenu());
+window.closeMenu=closeMenu;
+
+// Cookie Banner (essentials only)
+const c=document.getElementById('cookie'); const acc=document.getElementById('cookie-accept'); const dec=document.getElementById('cookie-decline');
+if(!localStorage.getItem('lvlo_cookie_choice')) c.classList.add('show');
+[acc,dec].forEach(btn=>btn.addEventListener('click',()=>{localStorage.setItem('lvlo_cookie_choice',btn.id==='cookie-accept'?'accept':'essential');c.classList.remove('show')}));
 </script>
 </body>
 </html>
