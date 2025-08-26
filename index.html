@@ -41,8 +41,21 @@ img,video{max-width:100%;display:block}
 .container{max-width:var(--max);margin-inline:auto;padding:0 20px}
 
 /* Topbar + Header */
-.topbar{background:var(--brand);color:#03343b;text-align:center;font-weight:800;font-size:14px;padding:8px 16px}
-.topbar a{text-decoration:underline}
+<!-- Laufender Ticker -->
+<div class="ticker" role="region" aria-label="Angebot">
+<div class="ticker__track">
+<span class="ticker__item">WELCOME TO LEVELOUT — Einzelklasse nur 20&nbsp;€</span>
+<span class="ticker__item"><a href="#booking" style="text-decoration:underline">Jetzt buchen</a></span>
+<span class="ticker__item">WELCOME TO LEVELOUT — Einzelklasse nur 20&nbsp;€</span>
+<span class="ticker__item"><a href="#booking" style="text-decoration:underline">Jetzt buchen</a></span>
+
+<!-- dieselben Items nochmal, damit die Schleife nahtlos ist -->
+<span class="ticker__item">WELCOME TO LEVELOUT — Einzelklasse nur 20&nbsp;€</span>
+<span class="ticker__item"><a href="#booking" style="text-decoration:underline">Jetzt buchen</a></span>
+<span class="ticker__item">WELCOME TO LEVELOUT — Einzelklasse nur 20&nbsp;€</span>
+<span class="ticker__item"><a href="#booking" style="text-decoration:underline">Jetzt buchen</a></span>
+</div>
+</div>
 header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:60}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:.2px}
@@ -188,17 +201,13 @@ WELCOME TO LEVELOUT — <strong>Einzelklasse nur 20&nbsp;€</strong> · <a href
 <div class="backdrop" id="backdrop" onclick="closeMenu()" aria-hidden="true"></div>
 
 
-<!-- HERO mit Vollbild-Hintergrund -->
-<section id="studio" class="hero">
-<div class="hero-bg">
-<!-- Dein Video oder Bild -->
-<video autoplay muted loop playsinline poster="assets/poster.jpg">
-<source src="assets/hero.mp4" type="video/mp4">
-</video>
-<div class="overlay"></div>
-</div>
-<div class="hero-content">
-<div class="pill">Munich • Reformer Pilates</div>
+<!-- HERO: Vollbreites Bild + mittiger Text -->
+<section id="studio" class="hero hero--cover" aria-label="LevelOut Hero">
+<!-- Hintergrundbild: passe die Datei an -->
+<div class="hero__media" style="--hero-image:url('assets/hero.jpg')"></div>
+
+<div class="hero__content" data-animate>
+<div class="pill" style="background:rgba(255,255,255,.85);color:#03343b">Munich • Reformer Pilates</div>
 <h1>Movement that feels good.</h1>
 <p class="lead">Klar strukturierte Klassen, sinnvolle Progression und eine Community, die dich trägt.</p>
 <div class="cta-row">
@@ -389,29 +398,28 @@ E-Mail: <span class="muted">[info@…]</span> · Telefon: <span class="muted">[+
 
 <!-- Footer -->
 <footer>
-<div class="container footer-grid">
-<div>
-<div class="logo"><span class="dot"></span> LevelOut</div>
-<p class="muted">Movement should feel good — physically & mentally.</p>
-<small>© <span id="year"></span> Level Out Pilates GmbH</small>
-</div>
-<div>
-<strong>Explore</strong><br>
-<a href="#studio">Studio</a><br>
-<a href="#classes">Kurse</a><br>
-<a href="#trainers">Trainers</a><br>
-<a href="#booking">Buchen</a>
-</div>
-<div>
-<strong>Rechtliches</strong><br>
-<a href="#impressum">Impressum</a><br>
-<a href="#datenschutz">Datenschutz</a>
-</div>
-<div>
-<strong>Follow</strong><br>
-<a href="https://www.instagram.com/levelout.london/" target="_blank" rel="noopener">Instagram</a><br>
-<a href="#" target="_blank" rel="noopener">TikTok</a>
-</div>
+<div class="legal-links">
+<details>
+<summary>Impressum</summary>
+<p>
+Level Out Pilates GmbH<br>
+Musterstraße 1<br>
+80331 München<br><br>
+Geschäftsführer: Max Mustermann<br>
+Handelsregister: HRB 123456<br>
+USt-IdNr.: DE123456789
+</p>
+</details>
+
+<details>
+<summary>Datenschutz</summary>
+<p>
+Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst.
+Ihre Daten werden vertraulich und entsprechend den gesetzlichen
+Vorschriften behandelt.<br><br>
+Weitere Infos finden Sie in unserer vollständigen Datenschutzerklärung.
+</p>
+</details>
 </div>
 </footer>
 
